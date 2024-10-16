@@ -26,11 +26,15 @@
 
 <body class="lexend">
     <header class="fixed top-0 left-0 right-0">
-        <nav class=" bg-[#F9F7F3] bg-opacity-95 md:flex  space-y-10 md:space-y-0 justify-around md:items-center pt-6 pb-10">
+        <nav
+            class=" bg-[#F9F7F3] bg-opacity-95 md:flex  space-y-10 md:space-y-0 justify-around md:items-center pt-6 pb-10">
             <!-- blog part -->
             <div>
-                <button class="bg-[#B4F461] py-3 px-8 rounded-lg text-xl font-semibold">Blog</button>
+                <a href="home.html">
+                    <button class="bg-[#B4F461] py-3 px-8 rounded-lg text-xl font-semibold">Blog</button>
+                </a>
             </div>
+
             <!-- logo part -->
             <div class="flex  items-center">
                 <img src="assets/logo.png" alt="">
@@ -44,14 +48,42 @@
 
         </nav>
         <div class="text-center py-5 bg-white bg-opacity-95">
-            <button class="bg-[#B4F461] py-3 px-8 rounded-lg text-xl font-semibold">Donation</button>
-            <button class="bg-[#B4F461] py-3 px-8 rounded-lg text-xl font-semibold">History</button>
+            <button id="show-donation" class="bg-gray-300 py-3 px-8 rounded-lg text-xl font-semibold"
+                onclick="selectButton(this)">Donation</button>
+            <button id="show-history" class="bg-gray-300 py-3 px-8 rounded-lg text-xl font-semibold"
+                onclick="selectButton(this)">History</button>
+
+            <script>
+                let selectedButton = null;
+
+                function selectButton(button) {
+                    if (selectedButton) {
+                        // Reset the previously selected button to its default color (gray)
+                        selectedButton.classList.remove('bg-[#B4F461]');
+                        selectedButton.classList.add('bg-gray-300');
+                    }
+
+                    // Set the selected button to green
+                    button.classList.remove('bg-gray-300');
+                    button.classList.add('bg-[#B4F461]');
+
+                    // Store the selected button
+                    selectedButton = button;
+                }
+
+                // Set the default selected button to Donation
+                document.getElementById('show-donation').classList.remove('bg-gray-300');
+                document.getElementById('show-donation').classList.add('bg-[#B4F461]');
+                selectedButton = document.getElementById('show-donation');
+            </script>
         </div>
 
+
     </header>
-    <main class="md:py-20 md:px-36 md:mt-28 mt-96">
-        <section>
-            
+    <main class="md:py-20 md:px-36 md:mt-28 mt-96 ">
+        <!-- donate section -->
+        <section id="donate-part">
+
             <!-- card 1 -->
             <div class="md:flex md:space-x-8 p-8 border-2 rounded-lg my-8">
                 <!-- noakhali image -->
@@ -73,14 +105,58 @@
                         those in need.</p>
                     <input class="h-14 w-full p-5 border-2 rounded-lg mb-3" placeholder="Write Donation Amount"
                         type="text" name="" id="input-amount">
-                    <button id="donate-now" class="bg-[#B4F461] py-3 md:px-40 rounded-lg text-xl w-full font-semibold">Donate
-                        now</button>
+                    <!-- noakhalidonation -->
+                    <!-- Donate Now Button -->
+                    <button id="donate-now"
+                        class="btn bg-[#B4F461] py-3 md:px-40 rounded-lg text-xl w-full font-semibold">
+                        Donate now
+                    </button>
+
+                    <!-- Modal for successful donation -->
+                    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+                        <div class="modal-box">
+                            <h3 class="text-4xl font-bold text-center">Congrats!</h3>
+                            <img class="mx-auto mt-5" src="assets/coin.png" alt="">
+                            <p class="py-4 text-center mt-5">You have donated to humankind <br>
+                                <span class="font-bold text-xl">Successfully</span>
+                            </p>
+                            <div class="modal-action">
+                                <form class="mx-auto" method="dialog">
+                                    <button class="btn">Close confirmation</button>
+                                </form>
+                            </div>
+                        </div>
+                    </dialog>
+
+                    <script>
+                        // Get references to elements
+                        const donateButton = document.getElementById('donate-now');
+                        const donationAmountInput = document.getElementById('donation-amount');
+                        const modal = document.getElementById('my_modal_5');
+
+                        // Event listener for the Donate button
+                        donateButton.addEventListener('click', function () {
+                            // Get the value from the input field
+                            const donationAmount = parseFloat(donationAmountInput.value);
+
+                            // Validate: Check if the input is a number, greater than 0, and not empty
+                            if (!isNaN(donationAmount) && donationAmount > 0) {
+                                // If valid, show the modal
+                                modal.showModal();
+                            } else {
+                                // If invalid, show an alert or handle the error as needed
+                                alert('Please enter a valid positive amount');
+                            }
+                        });
+                    </script>
+                    <!-- noakhali donation end -->
+
 
                 </div>
             </div>
             <!-- card 2 -->
             <div class="md:flex md:space-x-8 p-8 border-2 rounded-lg my-8">
-                <!-- noakhali image -->
+                <!-- feni image -->
                 <div>
                     <img class="md:max-w-lg" src="assets/feni.png" alt="">
                 </div>
@@ -89,7 +165,7 @@
                     <!-- amount part -->
                     <div class="flex items-center bg-[#111111] bg-opacity-5 py-3 px-1 w-28 rounded-lg">
                         <img src="assets/coin.png" alt="">
-                        <p>600 BDT</p>
+                        <p id="donate-total-2">600 BDT</p>
                     </div>
                     <h3 class="text-xl font-bold my-3">Donate for Flood Relief in Feni,Bangladesh</h3>
                     <p class="font-light text-[#111111] text-opacity-70 mb-3">The recent floods in Feni have devastated
@@ -98,9 +174,52 @@
                         this calamity. Together, we can offer crucial support and help rebuild lives in the aftermath of
                         this disaster. Every contribution counts towards making a real difference.</p>
                     <input class="h-14 w-full p-5 border-2 rounded-lg mb-3" placeholder="Write Donation Amount"
-                        type="text" name="" id="">
-                    <button class="bg-[#B4F461] py-3 md:px-40 rounded-lg text-xl w-full font-semibold">Donate
-                        now</button>
+                        type="text" name="" id="input-amount-2">
+                    <!-- feni donation -->
+                    <!-- Donate Now Button -->
+                    <button id="donate-now-2"
+                        class="btn bg-[#B4F461] py-3 md:px-40 rounded-lg text-xl w-full font-semibold">
+                        Donate now
+                    </button>
+
+                    <!-- Modal for successful donation -->
+                    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+                        <div class="modal-box">
+                            <h3 class="text-4xl font-bold text-center">Congrats!</h3>
+                            <img class="mx-auto mt-5" src="assets/coin.png" alt="">
+                            <p class="py-4 text-center mt-5">You have donated to humankind <br>
+                                <span class="font-bold text-xl">Successfully</span>
+                            </p>
+                            <div class="modal-action">
+                                <form class="mx-auto" method="dialog">
+                                    <button class="btn">Close confirmation</button>
+                                </form>
+                            </div>
+                        </div>
+                    </dialog>
+
+                    <script>
+                        // Get references to elements
+                        const donateButton2 = document.getElementById('donate-now');
+                        const donationAmountInput2 = document.getElementById('donation-amount');
+                        const modal2 = document.getElementById('my_modal_5');
+
+                        // Event listener for the Donate button
+                        donateButton2.addEventListener('click', function () {
+                            // Get the value from the input field
+                            const donationAmount2 = parseFloat(donationAmountInput2.value);
+
+                            // Validate: Check if the input is a number, greater than 0, and not empty
+                            if (!isNaN(donationAmount2) && donationAmount2 > 0) {
+                                // If valid, show the modal
+                                modal2.showModal();
+                            } else {
+                                // If invalid, show an alert or handle the error as needed
+                                alert('Please enter a valid positive amount');
+                            }
+                        });
+                    </script>
+                    <!-- Feni donation end -->
 
                 </div>
             </div>
@@ -115,7 +234,7 @@
                     <!-- amount part -->
                     <div class="flex items-center bg-[#111111] bg-opacity-5 py-3 px-1 w-28 rounded-lg">
                         <img src="assets/coin.png" alt="">
-                        <p>2400 BDT</p>
+                        <p id="donate-total-3">2400 BDT</p>
                     </div>
                     <h3 class="text-xl font-bold my-3">Aid for Injured in the Quota Movement</h3>
                     <p class="font-light text-[#111111] text-opacity-70 mb-3">The recent Quota movement has resulted in
@@ -125,19 +244,73 @@
                         during this challenging time. Every donation plays a vital role in alleviating their suffering
                         and aiding in their recovery.Thanks in advance.</p>
                     <input class="h-14 w-full p-5 border-2 rounded-lg mb-3" placeholder="Write Donation Amount"
-                        type="text" name="" id="">
-                    <button class="bg-[#B4F461] py-3 md:px-40 rounded-lg text-xl w-full font-semibold">Donate
-                        now</button>
+                        type="text" name="" id="input-amount-3">
+                    <!-- Quota donation -->
+                    <!-- Donate Now Button -->
+                    <button id="donate-now-3"
+                        class="btn bg-[#B4F461] py-3 md:px-40 rounded-lg text-xl w-full font-semibold">
+                        Donate now
+                    </button>
+
+                    <!-- Modal for successful donation -->
+                    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+                        <div class="modal-box">
+                            <h3 class="text-4xl font-bold text-center">Congrats!</h3>
+                            <img class="mx-auto mt-5" src="assets/coin.png" alt="">
+                            <p class="py-4 text-center mt-5">You have donated to humankind <br>
+                                <span class="font-bold text-xl">Successfully</span>
+                            </p>
+                            <div class="modal-action">
+                                <form class="mx-auto" method="dialog">
+                                    <button class="btn">Close confirmation</button>
+                                </form>
+                            </div>
+                        </div>
+                    </dialog>
+
+                    <script>
+                        // Get references to elements
+                        const donateButton3 = document.getElementById('donate-now');
+                        const donationAmountInput3 = document.getElementById('donation-amount');
+                        const modal3 = document.getElementById('my_modal_5');
+
+                        // Event listener for the Donate button
+                        donateButton2.addEventListener('click', function () {
+                            // Get the value from the input field
+                            const donationAmount2 = parseFloat(donationAmountInput2.value);
+
+                            // Validate: Check if the input is a number, greater than 0, and not empty
+                            if (!isNaN(donationAmount2) && donationAmount2 > 0) {
+                                // If valid, show the modal
+                                modal2.showModal();
+                            } else {
+                                // If invalid, show an alert or handle the error as needed
+                                alert('Please enter a valid positive amount');
+                            }
+                        });
+                    </script>
+                    <!-- Quota donation end -->
 
                 </div>
             </div>
         </section>
+        <!-- transection section -->
+        <div id="history-part" class="hidden">
+
+            <div id="Transection-container" class=" mt-10">
+
+            </div>
+        </div>
 
     </main>
     <footer class="bg-[#F9F7F3] py-10">
 
     </footer>
+    <script src="js/function.js"></script>
+    <script src="js/quota.js"></script>
+    <script src="js/feni.js"></script>
     <script src="js/java.js"></script>
+    <script src="js/common.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.13/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <header class="fixed top-0 left-0 right-0">
+        <nav
+            class=" bg-[#F9F7F3] bg-opacity-95 md:flex  space-y-10 md:space-y-0 justify-around md:items-center pt-6 pb-10">
+            <!-- blog part -->
+            <div>
+                <a href="index.html">
+                    <button class="bg-[#B4F461] py-3 px-8 rounded-lg text-xl font-semibold">Home</button>
+                </a>
+            </div>
+
+            <!-- logo part -->
+            <div class="flex  items-center">
+                <img src="assets/logo.png" alt="">
+                <h3 class="font-semibold text-xl">Donate Bangladesh</h3>
+            </div>
+            <!-- coin part -->
+            <div class="flex">
+                <img src="assets/coin.png" alt="">
+                <h3 id="my-balance" class="font-medium text-xl text-[#111111] text-opacity-70">5500 BDT</h3>
+            </div>
+
+        </nav>
+    </header>
+    <h1 class="text-5xl font-bold py-10 md:mt-20 mt-80">Important Faq?</h1>
+    <div class="join join-vertical w-full">
+        <div class="collapse collapse-arrow join-item border-base-300 border">
+            <input type="radio" name="my-accordion-4" checked="checked" />
+            <div class="collapse-title text-xl font-medium">What is the Document Object Model (DOM)? </div>
+            <div class="collapse-content">
+                <p> The DOM is the bridge that lets scripts interact with and modify the HTML/CSS content of a webpage.
+                </p>
+            </div>
+        </div>
+        <div class="collapse collapse-arrow join-item border-base-300 border">
+            <input type="radio" name="my-accordion-4" />
+            <div class="collapse-title text-xl font-medium">How Do You Select An Element On The DOM?</div>
+            <div class="collapse-content">
+                <p>To select an element on the DOM, you can use JavaScript methods like: <br>
+
+                   <br> document.getElementById('id') – Selects an element by its id.
+                    <br>document.getElementsByClassName('class') – Selects elements by their class name.
+                    <br>document.getElementsByTagName('tag') – Selects elements by their tag name.
+                    <br>document.querySelector('selector') – Selects the first element that matches a CSS selector.
+                    <br>document.querySelectorAll('selector') – Selects all elements that match a CSS selector.</p>
+            </div>
+        </div>
+        <div class="collapse collapse-arrow join-item border-base-300 border">
+            <input type="radio" name="my-accordion-4" />
+            <div class="collapse-title text-xl font-medium">what is event delegation in the context of the DOM ,and why  is it useful?</div>
+            <div class="collapse-content">
+                <p>Event delegation is a technique where you attach a single event listener to a parent element to handle events from its child elements. <br>
+
+                    <br>Why Useful:
+                    <br>Efficient: Fewer event listeners, improving performance.
+                   <br> Dynamic Elements: Works for newly added child elements.
+                    <br>Simpler Code: Reduces multiple event listeners.</p>
+            </div>
+        </div>
+        <div class="collapse collapse-arrow join-item border-base-300 border">
+            <input type="radio" name="my-accordion-4" />
+            <div class="collapse-title text-xl font-medium">How Do You Manipulate an Element's attributes and style using the DOM?</div>
+            <div class="collapse-content">
+                <p>
+                    Manipulating Attributes and Styles: <br>
+                    Attributes: <br>
+                    
+                   <br> Get: element.getAttribute('attr')
+                    <br>Set: element.setAttribute('attr', 'value')
+                    <br>Remove: element.removeAttribute('attr')
+                    <br>Styles:
+                    
+                    <br>Set: element.style.property = 'value'
+                    <br>Get: const value = element.style.property
+                    <br>Remove: element.style.removeProperty('property')</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

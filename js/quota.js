@@ -1,22 +1,22 @@
-document.getElementById('donate-now').addEventListener('click',function(event){
+document.getElementById('donate-now-3').addEventListener('click',function(event){
     event.preventDefault();
-    let inputamount=inputfieldvaluebyid('input-amount');
+    let inputamount3=inputfieldvaluebyid('input-amount-3');
     let mybalance=inputfieldtextbyid('my-balance');
-    if(isNaN(inputamount) || inputamount<=0){
+    if(isNaN(inputamount3) || inputamount3<=0){
         alert('please input some valid number')
         return;
     }
-    if(inputamount>mybalance){
+    if(inputamount3>mybalance){
         alert('you have insuffisient amount')
         return;
     }
     document.getElementById('my_modal_5').showModal();
-    let donatetotal=inputfieldtextbyid('donate-total');
-    let newbalance=inputamount+donatetotal;
-    document.getElementById('donate-total').innerText=newbalance;
-    let remainbalance=mybalance-inputamount;
-    document.getElementById("my-balance").innerText=remainbalance;
-    // add to history
+    let donatetotal3=inputfieldtextbyid('donate-total-3');
+    let newbalance=inputamount3+donatetotal3;
+    document.getElementById('donate-total-3').innerText=newbalance;
+    let remainbalance=mybalance-inputamount3;
+        document.getElementById("my-balance").innerText=remainbalance;
+          // add to history
     let p = document.createElement('p');
     p.classList.add('border-2')
     p.classList.add('rounded-lg')
@@ -33,9 +33,10 @@ document.getElementById('donate-now').addEventListener('click',function(event){
     });
     
     
-    p.innerText = `${inputamount} Taka is Donated for Donate For Flood at Noakhali, Bangladesh. 
+    p.innerText = `${inputamount3} Taka is Donated for Aid for Injured in the Quota Movement. 
 
     [${formattedDate} - ${formattedTime}]`;
     
     document.getElementById('Transection-container').appendChild(p);
 })
+    
